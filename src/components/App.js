@@ -1,28 +1,14 @@
-import {Component} from 'react';
-import IssueItem from './IssueItem';
+import {Component, PropTypes} from 'react';
+import IssueList from './IssueList';
 
 class App extends Component {
-  state = {
-    issues: [{
-      id: 1,
-      title: "Found a bug",
-      body: "Something doesn't work"
-    }, {
-      id: 2,
-      title: "Found another bug",
-      body: "Something still doesn't work"
-    }, {
-      id: 3,
-      title: "Found yet another bug",
-      body: "This whole thing doesn't work"
-    }]
+  static propTypes = {
+    issues: PropTypes.array.isRequired
   }
 
   render() {
     return (
-      <div>
-        {this.state.issues.map(IssueItem.fromIssue)}
-      </div>
+      <IssueList issues={this.props.issues} />
     );
   }
 }
