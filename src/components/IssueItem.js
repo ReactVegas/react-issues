@@ -8,12 +8,6 @@ class IssueItem extends Component {
     })
   }
 
-  static fromIssue(issue) {
-    return (
-      <IssueItem key={issue.id} issue={issue} />
-    );
-  }
-
   render() {
     return (
       <div>

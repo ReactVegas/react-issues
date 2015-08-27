@@ -9,7 +9,11 @@ class IssueList extends Component {
   render() {
     return (
       <div>
-        {this.props.issues.map(IssueItem.fromIssue)}
+        {this.props.issues.map((issue) => {
+          return (
+            <IssueItem key={issue.id} issue={issue} />
+          );
+        })}
       </div>
     );
   }
