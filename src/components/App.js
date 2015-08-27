@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <div>
         <h1>React Issues</h1>
-        <IssueList repo="rails/rails" />
+        <IssueList repo="facebook/react" />
       </div>
     );
   }

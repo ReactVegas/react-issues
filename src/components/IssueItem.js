@@ -8,13 +8,31 @@ class IssueItem extends Component {
     })
   }
 
+  state = {
+    showMore: false
+  }
+
   render() {
     return (
       <div>
-        <h2>{this.props.issue.title}</h2>
-        <p>{this.props.issue.body}</p>
+        <h2>
+          <a href="#" onClick={::this.handleClick}>{this.props.issue.title}</a>
+        </h2>
+        {this.renderMore()}
       </div>
     );
+  }
+
+  renderMore() {
+    if (this.state.showMore) {
+      return (
+        <p>{this.props.issue.body}</p>
+      );
+    }
+  }
+
+  handleClick() {
+    this.setState({showMore: !this.state.showMore});
   }
 }
 
