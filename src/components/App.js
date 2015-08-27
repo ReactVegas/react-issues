@@ -1,14 +1,13 @@
-import {Component, PropTypes} from 'react';
+import {Component} from 'react';
 import IssueList from './IssueList';
 
 class App extends Component {
-  static propTypes = {
-    issues: PropTypes.array.isRequired
-  }
-
   render() {
     return (
-      <IssueList issues={this.props.issues} />
+      <div>
+        <h1>React Issues</h1>
+        <IssueList repo="rails/rails" />
+      </div>
     );
   }
 }

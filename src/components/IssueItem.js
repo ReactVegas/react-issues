@@ -11,7 +11,7 @@ class IssueItem extends Component {
   render() {
     return (
       <div>
-        <h1>{this.props.issue.title}</h1>
+        <h2>{this.props.issue.title}</h2>
         <p>{this.props.issue.body}</p>
       </div>
     );

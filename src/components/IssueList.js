@@ -3,19 +3,42 @@ import IssueItem from './IssueItem';
 
 class IssueList extends Component {
   static propTypes = {
-    issues: PropTypes.array.isRequired
+    repo: PropTypes.string.isRequired
+  }
+
+  state = {
+    issues: []
+  }
+
+  componentWillMount() {
+    this.loadIssues();
+  }
+
+  componentWillReceiveProps() {
+    this.loadIssues();
   }
 
   render() {
     return (
       <div>
-        {this.props.issues.map((issue) => {
+        {this.state.issues.map((issue) => {
           return (
             <IssueItem key={issue.id} issue={issue} />
           );
         })}
       </div>
     );
+  }
+
+  loadIssues() {
+    let request = fetch(`https://api.github.com/repos/${this.props.repo}/issues`);
+    let data = request.then((response) => {
+      return response.json();
+    });
+
+    data.then((issues) => {
+      this.setState({issues: issues});
+    });
   }
 }
 
