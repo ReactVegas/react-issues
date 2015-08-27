@@ -30,15 +30,10 @@ class IssueList extends Component {
     );
   }
 
-  loadIssues() {
-    let request = fetch(`https://api.github.com/repos/${this.props.repo}/issues`);
-    let data = request.then((response) => {
-      return response.json();
-    });
-
-    data.then((issues) => {
-      this.setState({issues: issues});
-    });
+  async loadIssues() {
+    let response = await fetch(`https://api.github.com/repos/${this.props.repo}/issues`);
+    let issues = await response.json();
+    this.setState({issues: issues});
   }
 }
 
