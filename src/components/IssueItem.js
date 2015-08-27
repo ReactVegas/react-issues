@@ -1,4 +1,5 @@
 import {PropTypes, Component} from 'react';
+import marked from 'marked';
 
 class IssueItem extends Component {
   static propTypes = {
@@ -15,9 +16,7 @@ class IssueItem extends Component {
   render() {
     return (
       <div>
-        <h2>
-          <a href="#" onClick={::this.handleClick}>{this.props.issue.title}</a>
-        </h2>
+        <h2 onClick={::this.handleClick}>{this.props.issue.title}</h2>
         {this.renderMore()}
       </div>
     );
@@ -25,8 +24,10 @@ class IssueItem extends Component {
 
   renderMore() {
     if (this.state.showMore) {
+      let html = marked(this.props.issue.body);
+
       return (
-        <p>{this.props.issue.body}</p>
+        <div dangerouslySetInnerHTML={{__html: html}} />
       );
     }
   }

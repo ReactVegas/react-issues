@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "babel-runtime": "^5.8.20",
+    "marked": "^0.3.5",
     "reqwest": "^1.1.5"
   }
 }
