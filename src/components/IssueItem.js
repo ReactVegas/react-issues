@@ -27,12 +27,14 @@ class IssueItem extends Component {
     let html = marked(this.props.issue.body);
 
     return (
-      <Spring defaultValue={{height: {val: 0}, opacity: {val: 0}}} endValue={this.endValue()}>
+      <Spring defaultValue={{top: {val: -200}}} endValue={this.endValue()}>
         {(animated) =>
-          <div
-            style={{height: animated.height.val, opacity: animated.opacity.val, overflow: 'auto'}}
-            dangerouslySetInnerHTML={{__html: html}}
-          />
+          <div style={this.style()}>
+            <div
+              style={{position: 'relative', top: animated.top.val}}
+              dangerouslySetInnerHTML={{__html: html}}
+            />
+          </div>
         }
       </Spring>
     );
@@ -42,11 +44,16 @@ class IssueItem extends Component {
     this.setState({showMore: !this.state.showMore});
   }
 
-  endValue() {
-    const {showMore} = this.state;
+  style() {
     return {
-      height: {val: showMore ? 100 : 0},
-      opacity: {val: showMore ? 1 : 0}
+      overflow: 'hidden',
+      display: this.state.showMore ? 'block' : 'none'
+    };
+  }
+
+  endValue() {
+    return {
+      top: {val: this.state.showMore ? 0 : -200, config: [240, 18]}
     };
   }
 }
